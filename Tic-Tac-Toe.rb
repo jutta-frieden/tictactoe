@@ -24,7 +24,7 @@ class Player
 	end
 
 	def wins
-		@score =+ 1;
+		@score += 1;
 		print "#{name} wins the game! "
 	end
 
@@ -61,11 +61,11 @@ end
 
 def main
   puts "Welcome to TicTacToe! Here is your cheatsheet so you know which number to type for any of the fields."
-  	puts "1|2|3"
-		puts "_ _ _"
-		puts "4|5|6"
-		puts "_ _ _"
-		puts "7|8|9"
+  puts "1|2|3"
+	puts "_ _ _"
+	puts "4|5|6"
+	puts "_ _ _"
+	puts "7|8|9"
   
   puts "Please put the first player's name:"
   player1 = Player.new(gets.chomp)
@@ -85,6 +85,7 @@ def main
 		  	player1.next_move
 		  	while game.board[player1.moves.last] != " "
 		  		puts "This field is already taken, please choose a different field."
+		  		player1.moves = player1.moves[0..-2]
 		  		player1.next_move
 		  	end
 			  game.board[player1.moves.last] = "X"
@@ -101,7 +102,8 @@ def main
 			  player2.next_move
 			  while game.board[player2.moves.last] != " "
 		  		puts "This field is already taken, please choose a different field."
-		  		player1.next_move
+		  		player2.moves = player2.moves[0..-2]
+		  		player2.next_move
 		  	end
 			  game.board[player2.moves.last] = "0"
 			  game.draw_board
